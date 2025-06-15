@@ -4,6 +4,7 @@ import coockieParser from "cookie-parser"
 
 
 import authRoutes from "./routes/auth.Roures.js"
+import userRoutes from "./routes/user.Route.js"
 import { connectDB } from "./lib/db.js"
 
 
@@ -18,6 +19,7 @@ app.use(coockieParser())
 
 
 app.use("/api/auth", authRoutes)
+app.use("/api/users", userRoutes)
 
 
 
