@@ -5,6 +5,7 @@ import coockieParser from "cookie-parser"
 
 import authRoutes from "./routes/auth.Roures.js"
 import userRoutes from "./routes/user.Route.js"
+import chatRoutes from "./routes/chat.Routes.js"
 import { connectDB } from "./lib/db.js"
 
 
@@ -20,6 +21,7 @@ app.use(coockieParser())
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api/chat", chatRoutes)
 
 
 
@@ -28,4 +30,4 @@ app.listen(port, () => {
     connectDB()
 })
 
-//51:18
+//ngrok 51:18 2:3:13

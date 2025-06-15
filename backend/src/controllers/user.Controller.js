@@ -27,7 +27,6 @@ export async function getRecomendedUsers(req, res) {
 }
 
 
-
 export async function getMyFriends(req, res) {
     try{
         const user = await User.findById(req.user.id).select("friends")
@@ -141,5 +140,43 @@ export async function acceptFriendRequest(req, res) {
         res.status(500).json({
             message: "Internal Server Error",
         })
+    }
+}
+
+
+export async function getFriendRequest(req, res) {
+    try{
+        const incomingRequest = await FriendRequest.find({
+            recipient: req.user.id,
+            status: "pending",
+        }).populate("sender", "fullName profilePic nativeLanguge learningLanguge")
+
+        const acceptedReq = await FriendRequest.find({
+            sender: req.user.id,
+            status: "accepted",
+        }).populate("recipient", "fullname profilePic");
+
+        res.status(200).json({incomingRequest, acceptedReq})
+
+    }catch(error){
+        console.log("Error in getPendingFreindRequest controller", error.message);
+        res.status(500).json({
+            message: "Internal server Error"
+        })
+    }
+}
+
+
+export async function getOutGoingFreindRequest(req, res) {
+    try{
+        const outgoingRequest = await FriendRequest.find({
+            sender: req.user.id,
+            status: "pending",
+        }).populate("recipient", "fullname profilePic nativeLanguge learningLanguge")
+
+        res.status(200).json(outgoingRequest)
+    }catch(error){
+        console.log("Error in getoutgoing freind requiest", error.message);
+        res.status(500).json({message: "Internal server error"})
     }
 }

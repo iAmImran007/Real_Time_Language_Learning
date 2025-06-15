@@ -24,7 +24,13 @@ export const upStreamUser = async (userData) => {
 
 
 //ganaret token 
-export const gnaretStreamToken = () => {
-
+export const generateStreamToken = (userId) => {
+    try{
+        //ensusre user id is a sting
+        const userIdStr = userId.toString()
+        return streamClient.createToken(userIdStr)
+    }catch(error){
+        console.error("Error ganaretinf stream token");
+    }
 }
 
