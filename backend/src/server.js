@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
+import coockieParser from "cookie-parser"
 
 
 import authRoutes from "./routes/auth.Roures.js"
@@ -12,6 +13,9 @@ const port = process.env.PORT
 
 
 app.use(express.json())
+app.use(coockieParser())
+
+
 
 app.use("/api/auth", authRoutes)
 
