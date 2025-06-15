@@ -1,5 +1,5 @@
 import express from "express"
-import { signup, login, logout } from "../../controllers/auth.Controller.js"
+import { signup, login, logout } from "../controllers/auth.Controller.js"
 
 
 
